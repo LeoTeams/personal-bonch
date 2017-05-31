@@ -1,6 +1,6 @@
 
 <template lang="pug">
-  h1 It's home page
+  h1 It's a page
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 # personal-bonch
 
 > Personal cabinet for Bonch students
-##Based on:
+## Based on:
 Vue, Vuex, Vue-router
 
 ## Build Setup

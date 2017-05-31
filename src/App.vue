@@ -1,8 +1,7 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
+<template lang="pug">
+  div#app
+    router-view
+
 </template>
 
 <script>
@@ -11,13 +10,22 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus">
+  html,body
+    margin 0
+    padding 0
+    width 100%
+    height 100%
+
+  body
+    font-family "Roboto"
+</style>
+
+<style lang="stylus" scoped>
+  #app
+    width 100%
+    height 100%
+    display flex
+    flex-direction column
+
 </style>

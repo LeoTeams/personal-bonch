@@ -3,7 +3,7 @@
   .App
     navigation-bar
     main
-      h1 It's home page {{appName}}
+      h1 It's a page {{appName}}
       time-table
 </template>
 

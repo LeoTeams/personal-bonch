@@ -1,3 +1,4 @@
+
 <template lang="pug">
   div#app
     router-view
@@ -11,6 +12,8 @@ export default {
 </script>
 
 <style lang="stylus">
+  @import url('https://fonts.googleapis.com/css?family=Roboto')
+
   html,body
     margin 0
     padding 0

@@ -3,13 +3,12 @@
   .App
     navigation-bar
     main
-      h1 It's a page {{appName}}
       time-table
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import TimeTable from './TimeTable.vue'
+  import TimeTable from './timetable/TimeTable.vue'
   import NavigationBar from './NavigationBar.vue'
 
   export default {
@@ -28,8 +27,10 @@
   @import "./styles/config.styl"
 
   main
-    margin-top headerHigh
-  h1
-    font-size 3em
     margin auto
+    margin-top headerHigh
+    max-width mainMaxWidth
+    display flex
+    flex-direction column
+    align-items center
 </style>

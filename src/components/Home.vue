@@ -9,7 +9,7 @@
 <script>
   import { mapState } from 'vuex'
   import TimeTable from './timetable/TimeTable.vue'
-  import NavigationBar from './NavigationBar.vue'
+  import NavigationBar from './navigation/NavigationBar.vue'
 
   export default {
     name: 'home',

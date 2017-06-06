@@ -12,16 +12,23 @@
         router-link(to="/academic-plan") Учебный план
         router-link(to="/portfolio") Портфолио
         router-link(to="/news") Новости
-    button.open-menu(v-on:click="menuOpened= !menuOpened") =
+    menu-button.menu-button(v-on:pressed="openMenu")
 </template>
 
 <script>
   import {mapState, mapGetters} from 'vuex'
+  import menuButton from './menuButton.vue'
+
   export default {
     name: 'navigation-bar',
     data () {
       return {
         menuOpened: false
+      }
+    },
+    methods: {
+      openMenu () {
+        this.menuOpened = !this.menuOpened
       }
     },
     computed: {
@@ -33,12 +40,15 @@
         'mostUsed',
         'others'
       ])
+    },
+    components: {
+      menuButton
     }
   }
 </script>
 
 <style lang="stylus">
-  @import './styles/config.styl'
+  @import '../styles/config.styl'
   buttonSize = headerHigh / 2
   nav
     width 100%
@@ -48,6 +58,7 @@
       position fixed
       top 0
       z-index 2
+      box-shadow 0 0 10px rgba(0,0,0,0.7)
       .most-used
         width "calc(100% - %s)" % buttonSize
         flex 4
@@ -59,7 +70,9 @@
           display flex
           justify-content center
           align-items  center
-    button
+          text-decoration none
+          color textColor
+    .menu-button
       position fixed
       top 0
       right 0
@@ -82,4 +95,7 @@
         margin auto
         display flex
         flex-direction column
+        a
+          text-decoration none
+          color textColor
 </style>

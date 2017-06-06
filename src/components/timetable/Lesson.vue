@@ -53,8 +53,7 @@
 </script>
 
 <style lang="stylus" scoped>
-
-  textColor = #0f0f0f
+  @import "../styles/config.styl"
 
   .lesson
     display flex

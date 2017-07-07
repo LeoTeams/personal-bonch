@@ -1,0 +1,2 @@
+export const FAKE_AUTH_DELAY = 2000
+export const FAKE_SCHEDULE_FETCHING_DELAY = 2000

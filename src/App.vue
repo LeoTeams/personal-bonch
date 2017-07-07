@@ -12,7 +12,10 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import url('https://fonts.googleapis.com/css?family=Roboto')
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500')
+  @import "./components/styles/default.css"
+
+  @import "./components/styles/config.styl"
 
   html,body
     margin 0
@@ -21,14 +24,14 @@ export default {
     height 100%
 
   body
-    font-family "Roboto"
+    font-family "Ubuntu"
+    background-color backgroundColor
+    background-image url(./assets/bg.png)
+    color: #5e616b
 </style>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
   #app
     width 100%
     height 100%
-    display flex
-    flex-direction column
-
 </style>

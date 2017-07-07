@@ -1,36 +1,42 @@
-
-<template lang="pug">
-  .App
-    navigation-bar
-    main
-      time-table
+<template>
+  <div class="main">
+    <side-bar />
+    <div class="content">
+      <header-bar />
+    </div>
+  </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import TimeTable from './timetable/TimeTable.vue'
-  import NavigationBar from './navigation/NavigationBar.vue'
+  import Header from './Header'
+  import Sidebar from './Sidebar'
 
   export default {
     name: 'home',
-    computed: mapState('home', [
-      'appName'
-    ]),
     components: {
-      TimeTable,
-      NavigationBar
+      'header-bar': Header,
+      'side-bar': Sidebar
+    },
+    computed: {
+      isWideScreen () {
+        return this.$store.getters.platform === 'desktop'
+      }
     }
   }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import "./styles/config.styl"
 
-  main
-    margin auto
-    margin-top headerHigh
-    max-width mainMaxWidth
-    display flex
-    flex-direction column
-    align-items center
+  .main {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+  }
+
+  .main .content {
+    height: 100%;
+    flex: 1;
+  }
 </style>

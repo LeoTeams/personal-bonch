@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import Auth from '@/components/Auth.vue'
 
+import Schedule from '@/components/Content/Schedule'
+
 Vue.use(Router)
 
 const authPath = '/auth'
@@ -10,8 +12,13 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: '',
+          component: Schedule
+        }
+      ]
     },
     {
       path: authPath,

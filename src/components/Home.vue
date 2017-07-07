@@ -3,6 +3,9 @@
     <side-bar />
     <div class="content">
       <header-bar />
+      <div class="content-wrapper">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -38,5 +41,14 @@
   .main .content {
     height: 100%;
     flex: 1;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main .content .content-wrapper {
+    flex: 1;
+
+    overflow: auto;
   }
 </style>

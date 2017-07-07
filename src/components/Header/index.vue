@@ -54,7 +54,7 @@ export default {
     align-items: center;
 
     width: 100%;
-    height: 60px;
+    min-height: 60px;
 
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

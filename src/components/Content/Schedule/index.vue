@@ -1,12 +1,17 @@
 <template>
   <div class="schedule">
-    <span>Schedule</span>
+    <span>{{ isLoading ? 'Типа загрузка' : 'Schedule' }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'schedule'
+  name: 'schedule',
+  computed: {
+    isLoading () {
+      return this.$store.getters.isScheduleLoading
+    }
+  }
 }
 </script>
 

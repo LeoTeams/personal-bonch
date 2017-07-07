@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import Auth from '@/components/Auth.vue'
 
-import Schedule from '@/components/Content/Schedule'
+import Schedule from '@/components/Content/Schedule/index.vue'
 
 Vue.use(Router)
 

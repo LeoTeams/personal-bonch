@@ -31,24 +31,18 @@
 <style lang="stylus">
   @import "./styles/config.styl"
 
-  .main {
-    width: 100%;
-    height: 100%;
+  .main
+    width 100%
+    height 100%
+    display flex
+    .content
+      height 100%
+      flex 1
+      display flex
+      flex-direction column
+      .content-wrapper
+        flex 1
+        background linear-gradient(135deg, gradientStart, gradientEnd)
+        overflow auto
 
-    display: flex;
-  }
-
-  .main .content {
-    height: 100%;
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-  }
-
-  .main .content .content-wrapper {
-    flex: 1;
-
-    overflow: auto;
-  }
 </style>

@@ -12,8 +12,8 @@ const generateSchedule = () => {
   const generateName = () => `${families.data[random(0, families.data.length)]} ${letters.charAt(random(0, letters.length))}. ${letters.charAt(random(0, letters.length))}.`
   const generateCab = () => `${random(100, 550)}/${random(1, 3)}`
   const generateType = () => ['Лабораторная работа', 'Лекция', 'Практические занятия'][random(0, 3)]
-  const getTime = (index) => ['9:00-10:35', '10:45-12:20', '13:00-14:35', '14:45-16:20', '16:30-18:05'][index]
 
+  // don't try fix this code, jsvm garbage collector clear arrays if use new Array().map
   const weeks = []
   Array.from(new Array(random(18, 25)), () => {
     const week = []
@@ -22,10 +22,10 @@ const generateSchedule = () => {
       Array.from(new Array(random(2, 6)), (_, index) => {
         day.push({
           title: subjects.data[random(0, subjects.data.length)],
-          time: getTime(index),
           teacher: generateName(),
           room: generateCab(),
-          type: generateType()
+          type: generateType(),
+          number: index
         })
       })
       week.push(day)
@@ -41,7 +41,8 @@ export default function createDataGeneratorPlugin () {
       rating: [random(100, 600), random(700, 3000)],
       attestatedSubjects: subjects.data.sort(() => Math.random() - 0.5).slice(0, random(0, subjects.data.length))
     }))
-
-    store.dispatch(actionTypes.REQUEST_SCHEDULE, generateSchedule())
+    const schedule = generateSchedule()
+    const current = random(0, schedule.length - 1)
+    store.dispatch(actionTypes.REQUEST_SCHEDULE, {schedule, current})
   }
 }

@@ -5,5 +5,6 @@ export default {
   profile: state => state.profile.data,
 
   isScheduleLoading: state => state.schedule.loading,
-  schedule: state => state.schedule.data
+  schedule: state => state.schedule.data,
+  currentWeek: state => state.schedule.currentWeek
 }

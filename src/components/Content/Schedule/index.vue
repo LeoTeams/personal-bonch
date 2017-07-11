@@ -1,32 +1,46 @@
-<template>
-  <div class="schedule">
-    <span>{{ isLoading ? 'Типа загрузка' : 'Schedule' }}</span>
-  </div>
+<template lang="pug" >
+  .schedule
+    loading-indicator(v-if="isLoading").loading
+    day(v-else="" v-for="(day, index) in data[currentWeek]",:dayWeek="index",:dayMonth="index", :lessons="day",:key="index")
 </template>
 
 <script>
-export default {
-  name: 'schedule',
-  computed: {
-    isLoading () {
-      return this.$store.getters.isScheduleLoading
+  import day from './Day.vue'
+  import LoadingIndicator from '../../UI/LoadingIndicator'
+//  import {mapGetters} from 'vuex'
+
+  export default {
+    name: 'schedule',
+    computed: {
+      isLoading () {
+        return this.$store.getters.isScheduleLoading
+      },
+      data () {
+        return this.$store.getters.schedule
+      },
+      currentWeek () {
+        return this.$store.getters.currentWeek
+      }
+    },
+    components: {
+      day,
+      'loading-indicator': LoadingIndicator
     }
   }
-}
 </script>
 
-<style scoped>
-  .schedule {
-    width: 100%;
-    height: 100%;
-
-    text-align: center;
-    padding-top: 200px;
-  }
-
-  .schedule span {
-    font-size: 3rem;
-    opacity: 0.3;
-  }
+<style lang="stylus" scoped>
+  .schedule
+    width 100%
+    display flex
+    flex-direction column
+    align-items center
+    padding 1rem 5rem
+    min-height 100%
+    .loading
+      margin auto
+    .day
+      width 100%
+      margin-bottom 5rem
 
 </style>

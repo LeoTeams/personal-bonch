@@ -12,8 +12,8 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500')
-  @import "./components/styles/default.css"
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu:200,400,500')
+  @import "./components/styles/default.styl"
 
   @import "./components/styles/config.styl"
 
@@ -26,7 +26,6 @@ export default {
   body
     font-family "Ubuntu"
     background-color backgroundColor
-    background-image url(./assets/bg.png)
     color: #5e616b
 </style>
 

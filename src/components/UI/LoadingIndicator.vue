@@ -16,10 +16,6 @@ export default {
       type: Boolean,
       default: true
     },
-    color: {
-      type: String,
-      default: 'orange'
-    },
     size: {
       type: String,
       default: '30px'
@@ -55,59 +51,47 @@ export default {
     },
     animationStyle2 () {
       return {
-        top: parseFloat(this.size) / 2 - this.moonSize / 2 + 'px',
-        backgroundColor: this.color
+        top: parseFloat(this.size) / 2 - this.moonSize / 2 + 'px'
       }
     },
     animationStyle3 () {
       return {
-        border: this.moonSize + 'px solid ' + this.color
+        border: this.moonSize + 'px solid '
       }
     }
   }
 }
 </script>
 
-<style>
-  .v-spinner {
-    width: 30px;
-    margin: 15px auto 0;
-  }
-  .v-spinner .v-moon1
-  {
-      -webkit-animation: v-moonStretchDelay 0.6s 0s infinite linear;
-              animation: v-moonStretchDelay 0.6s 0s infinite linear;
-      -webkit-animation-fill-mode: forwards;
-              animation-fill-mode: forwards;
-      position: relative;
-  }
-  .v-spinner .v-moon2
-  {
-      -webkit-animation: v-moonStretchDelay 0.6s 0s infinite linear;
-              animation: v-moonStretchDelay 0.6s 0s infinite linear;
-      -webkit-animation-fill-mode: forwards;
-              animation-fill-mode: forwards;
-      opacity: 0.8;
-      position: absolute;
-  }
-  .v-spinner .v-moon3
-  {
-      opacity: 0.3;
-  }
+<style lang="stylus">
+  @import "../styles/config.styl"
+
+  .v-spinner
+    width 30px
+    margin 15px auto 0
+
+    .v-moon1
+      animation: v-moonStretchDelay 0.6s 0s infinite linear
+      animation-fill-mode forwards
+      position relative
+
+    .v-moon2
+      animation v-moonStretchDelay 0.6s 0s infinite linear
+      animation-fill-mode forwards
+      opacity 0.8
+      position absolute
+      background-color loadingIndicatorColor
+
+    .v-moon3
+      opacity 0.3
+      border-color loadingIndicatorColor
+
   @-webkit-keyframes v-moonStretchDelay
-  {
-      100%
-      {
-          -webkit-transform: rotate(360deg);
-                  transform: rotate(360deg);
-      }
-  }
+    100%
+      transform rotate(360deg)
+
   @keyframes v-moonStretchDelay
-  {
-      100%
-      {
-          -webkit-transform: rotate(360deg);
-                  transform: rotate(360deg);
-      }
-  }
+    100%
+      transform rotate(360deg)
+
 </style>

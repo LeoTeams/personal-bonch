@@ -1,7 +1,7 @@
 <template lang="pug" >
   .schedule
     loading-indicator(v-if="isLoading").loading
-    day(v-else="" v-for="(day, index) in data[currentWeek]",:dayWeek="index",:dayMonth="index", :lessons="day",:key="index")
+    day(v-else="" v-for="(day, index) in data[currentWeek]",:dayWeek="index",:dayMonth="day.dayOfMonth", :lessons="day.lessons",:key="index")
 </template>
 
 <script>

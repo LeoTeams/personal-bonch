@@ -42,7 +42,7 @@
       flex-direction column
       .content-wrapper
         flex 1
-        background linear-gradient(135deg, gradientStart, gradientEnd)
+        // background linear-gradient(135deg, gradientStart, gradientEnd)
         overflow auto
 
 </style>

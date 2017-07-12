@@ -1,9 +1,9 @@
 <template lang="pug">
-  .day
+  .day(:class="{ 'current': isCurrentDay }")
     h2.title
       span.week {{dayOfTheWeek}}
       //span.month {{dayOfTheMonth}}
-    lesson(v-for="(lesson,index) in lessons",:number="index",:lesson="lesson",:key="lesson.title + index")
+    lesson(v-for="(lesson,index) in lessons", :today="isCurrentDay" :number="index",:lesson="lesson",:key="lesson.title + index")
 </template>
 
 <script>
@@ -32,6 +32,21 @@
         dayOfTheWeek: dayWeek[this.dayWeek],
         dayOfTheMonth: this.dayMonth
       }
+    },
+    created () {
+      const currentDay = new Date().getDay() - 1
+      this.isCurrentDay = currentDay === this.dayWeek
+    },
+    mounted () {
+      if (this.isCurrentDay) {
+        const { $el } = this
+
+        if ($el.scrollIntoViewIfNeeded) {
+          $el.scrollIntoViewIfNeeded(true)
+          return
+        }
+        $el.scrollIntoView(true)
+      }
     }
   }
 </script>
@@ -40,7 +55,10 @@
   @import "../../styles/config.styl"
 
   .day
+    background-color #fff
+    border-radius 10px
     .title
+      transform translate(70px, -30px)
       width 100%
       display flex
       justify-content flex-start
@@ -49,8 +67,20 @@
       margin-top 0
       color headerColor
       .week
-        flex 1
+        padding 0 20px
+        background-color: #fff
+        border-radius 10px
       .month
         flex 3
         text-align left
+
+  .day
+    &.current
+      box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24);
+      .week
+        background-color loadingIndicatorColor
+        color: #fff
+      .lesson
+        &.current
+          background-color: white
 </style>

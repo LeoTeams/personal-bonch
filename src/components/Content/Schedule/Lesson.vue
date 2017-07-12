@@ -1,5 +1,5 @@
 <template lang="pug">
-  .lesson
+  .lesson(:class="{ 'current': isNow }")
     .time
       span.begin {{time.begin}}
       span.end {{time.end}}
@@ -20,12 +20,35 @@
   export default {
     name: 'lesson',
     props: [
-      'lesson'
+      'lesson',
+      'today'
     ],
     data: function () {
       return {
         ...this.lesson
       }
+    },
+    created () {
+      console.log(this.today)
+      if (!this.today) {
+        this.isNow = false
+        return
+      }
+
+      const currentDate = new Date()
+      const currentHours = currentDate.getHours()
+      const currentMinutes = currentDate.getMinutes()
+
+      const parseTime = target => {
+        const split = this.time[target].split(':')
+        return { hours: +split[0], minutes: +split[1] }
+      }
+
+      const begin = parseTime('begin')
+      const end = parseTime('end')
+
+      this.isNow = currentHours >= begin.hours && currentHours < end.hours &&
+                    currentMinutes >= begin.minutes && currentMinutes < end.minutes
     }
   }
 </script>
@@ -49,7 +72,7 @@
     .time
       text-align right
       margin-right 2rem
-      width 3em
+      width 4em
       margin-top 0
       display flex
       flex-direction column
@@ -79,6 +102,7 @@
       flex 1
       display flex
       flex-direction column
+      margin-left: 0.5rem
       .class-description
         opacity 0
         margin-right 0.2em
@@ -90,7 +114,9 @@
         transition-opacity()
     .teacher
       margin-top 0
+      margin 0 0.5rem
       flex 2
+      text-align center
     &:hover
       .time
         .end

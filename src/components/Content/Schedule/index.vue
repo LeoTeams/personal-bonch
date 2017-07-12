@@ -36,6 +36,7 @@
     flex-direction column
     align-items center
     padding 1rem 5rem
+    margin-top 2rem
     min-height 100%
     .loading
       margin auto

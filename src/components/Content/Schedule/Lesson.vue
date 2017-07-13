@@ -1,8 +1,9 @@
 <template lang="pug">
-  .lesson(:class="[{ current: isNow}, typeClass ]")
+  .lesson(:class="[{ current: isNow}, typeClass ]", v-on:mouseover="hover = true", v-on:mouseleave="hover = false")
     .time
       span.begin {{time.begin}}
-      span.end {{time.end}}
+      transition(name="time-end")
+        span(v-if="hover").end {{time.end}}
     .description
       separator(:type="type.number")
       p.title {{title}}
@@ -34,7 +35,8 @@
     data: function () {
       return {
         ...this.lesson,
-        typeClass: typeClasses[this.lesson.type.number]
+        typeClass: typeClasses[this.lesson.type.number],
+        hover: false
       }
     },
     created () {
@@ -99,8 +101,6 @@
       margin-top 0
       display flex
       flex-direction column
-      .end
-        opacity 0
 
     .description
       display flex
@@ -121,12 +121,17 @@
         line-height 1em
       .type
         color secondaryTextColor
-        font-weight 200
+        font-weight 400
+        opacity 0.8
+        transition-property opacity
+        transition-duration 0.5s
         font-family "Source Sans Pro", sans-serif
       .separator
         position absolute
         top 0
         left calc(-0.5rem - 1px)
+        transition-property top
+        transition-duration 0.5s
 
     colors = firstTypeLessonColor secondTypeLessonColor thirdTypeLessonColor
     for num, i in first second third
@@ -154,9 +159,11 @@
       flex 2
       text-align center
     &:hover
-      .time
-        .end
-          animation emergenceToBottom 0.5s forwards
+      .description
+        .type
+          opacity 1
+        .separator
+          top 1rem
       .room
         .class-description
           opacity 1
@@ -164,4 +171,15 @@
           opacity 1
         .short-hull
           opacity 0
+
+  .time-end-enter, .time-end-leave-to
+    opacity 0
+    transform translateY(-0.5rem)
+  .time-end-enter-to, .time-end-leave
+    opacity 1
+    transform translateX(0)
+  .time-end-enter-active, .time-end-leave-active
+    transition-property opacity transform
+    transition-duration 0.5s
+
 </style>

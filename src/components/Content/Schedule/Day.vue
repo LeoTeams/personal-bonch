@@ -1,8 +1,9 @@
 <template lang="pug">
-  .day(:class="{ 'current': isCurrentDay }")
+  .day(:class="{ 'current': isCurrentDay }", v-on:mouseover="hover = true", v-on:mouseleave="hover = false")
     h2.title
       span.week {{dayOfTheWeek}}
-      span.month {{dayOfTheMonth}}
+      transition(name="month-transition")
+        span(v-if="hover").month {{dayOfTheMonth}}
     lesson(v-for="(lesson,index) in lessons", :today="isCurrentDay", :number="index",:lesson="lesson",:key="lesson.title + index")
 </template>
 
@@ -30,7 +31,8 @@
     data () {
       return {
         dayOfTheWeek: dayWeek[this.dayWeek],
-        dayOfTheMonth: this.dayMonth
+        dayOfTheMonth: this.dayMonth,
+        hover: false
       }
     },
     created () {
@@ -54,14 +56,6 @@
 <style lang="stylus" scoped>
   @import "../../styles/config.styl"
 
-  @keyframes emergenceToLeft
-    from
-      opacity 0
-      transform translateX(5rem)
-    to
-      opacity 1
-      transform translateX(3rem)
-
   .day
     background-color dayBackgroundColor
     border-radius 10px
@@ -81,12 +75,7 @@
       .month
         flex 3
         text-align left
-        opacity 0
-    &:hover
-      .title
-        .month
-          animation emergenceToLeft 0.5s forwards
-
+        margin-left 2rem
   .day
     &.current
       .title
@@ -96,4 +85,14 @@
       .lesson
         &.current
           background-color: white
+
+  .month-transition-enter, .month-transition-leave-to
+    opacity 0
+    transform translateX(3rem)
+  .month-transition-enter-to, .month-transition-leave
+    opacity 1
+    transform translateX(0)
+  .month-transition-enter-active, .month-transition-leave-active
+    transition-property opacity transform
+    transition-duration 0.5s
 </style>

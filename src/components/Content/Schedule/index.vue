@@ -30,6 +30,8 @@
 </script>
 
 <style lang="stylus" scoped>
+  @import "../../styles/config.styl"
+
   .schedule
     width 100%
     display flex
@@ -43,5 +45,13 @@
     .day
       width 100%
       margin-bottom 5rem
+
+
+  @media screen and (max-width: mobile-edge)
+    .schedule
+      padding-left 0
+      padding-right 0
+
+  
 
 </style>

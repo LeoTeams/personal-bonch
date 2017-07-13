@@ -11,7 +11,13 @@ const generateSchedule = () => {
   const letters = 'АБВГДЕЗИКЛМНОПРСТУФЭЮЯ'
   const generateName = () => `${families.data[random(0, families.data.length)]} ${letters.charAt(random(0, letters.length))}. ${letters.charAt(random(0, letters.length))}.`
   const generateCab = () => ({'class': random(100, 550), hull: random(1, 3)})
-  const generateType = () => ['Лабораторная работа', 'Лекция', 'Практические занятия'][random(0, 3)]
+  const generateType = () => {
+    const number = random(0, 3)
+    return {
+      number,
+      name: ['Лабораторная работа', 'Лекция', 'Практические занятия'][number]
+    }
+  }
   let times = {
     begin: ['9:00', '10:45', '13:00', '14:45', '16:35'],
     end: ['10:35', '12:20', '14:35', '16:20', '18:05']

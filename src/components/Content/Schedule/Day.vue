@@ -2,8 +2,8 @@
   .day(:class="{ 'current': isCurrentDay }")
     h2.title
       span.week {{dayOfTheWeek}}
-      //span.month {{dayOfTheMonth}}
-    lesson(v-for="(lesson,index) in lessons", :today="isCurrentDay" :number="index",:lesson="lesson",:key="lesson.title + index")
+      span.month {{dayOfTheMonth}}
+    lesson(v-for="(lesson,index) in lessons", :today="isCurrentDay", :number="index",:lesson="lesson",:key="lesson.title + index")
 </template>
 
 <script>
@@ -54,32 +54,45 @@
 <style lang="stylus" scoped>
   @import "../../styles/config.styl"
 
+  @keyframes emergenceToLeft
+    from
+      opacity 0
+      transform translateX(5rem)
+    to
+      opacity 1
+      transform translateX(3rem)
+
   .day
-    background-color #fff
+    background-color dayBackgroundColor
     border-radius 10px
     .title
-      transform translate(70px, -30px)
       width 100%
       display flex
       justify-content flex-start
       font-size 4em
       margin-bottom 1rem
+      margin-left 0
       margin-top 0
       color headerColor
+      line-height 1em
       .week
-        padding 0 20px
-        background-color: #fff
+        padding 0 1rem
         border-radius 10px
       .month
         flex 3
         text-align left
+        opacity 0
+    &:hover
+      .title
+        .month
+          animation emergenceToLeft 0.5s forwards
 
   .day
     &.current
-      box-shadow: 0 0px 3px rgba(0,0,0,0.12), 0 0px 2px rgba(0,0,0,0.24);
-      .week
+      .title
         background-color loadingIndicatorColor
         color: #fff
+
       .lesson
         &.current
           background-color: white

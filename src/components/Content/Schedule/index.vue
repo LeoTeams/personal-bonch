@@ -7,10 +7,17 @@
 <script>
   import day from './Day.vue'
   import LoadingIndicator from '../../UI/LoadingIndicator'
-//  import {mapGetters} from 'vuex'
 
+  const timeCheckDelay = 1000 * 60
+  
   export default {
     name: 'schedule',
+    data () {
+      return {
+        interval: 0,
+        lastTimeCheck: 0
+      }
+    },
     computed: {
       isLoading () {
         return this.$store.getters.isScheduleLoading
@@ -25,6 +32,17 @@
     components: {
       day,
       'loading-indicator': LoadingIndicator
+    },
+    mounted () {
+      this.interval = setInterval(function () {
+        if (this.lastTimeCheck && new Date(new Date() - this.lastTimeCheck).getDay() > 0) {
+          this.$forceUpdate()
+        }
+        this.lastTimeCheck = new Date()
+      }.bind(this), timeCheckDelay)
+    },
+    beforeDestroy () {
+      clearInterval(this.interval)
     }
   }
 </script>
@@ -52,6 +70,6 @@
       padding-left 0
       padding-right 0
 
-  
+
 
 </style>

@@ -4,11 +4,14 @@
       span.week {{dayOfTheWeek}}
       transition(name="month-transition")
         span(v-if="hover").month {{dayOfTheMonth}}
-    lesson(v-for="(lesson,index) in lessons", :today="isCurrentDay", :number="index",:lesson="lesson",:key="lesson.title + index")
+    lesson(v-for="(lesson,index) in computedLessons", :number="index", :lesson="lesson", :key="lesson.title + index")
 </template>
 
 <script>
   import lesson from './Lesson.vue'
+
+  const updateDelay = 1000 * 60
+
   let dayWeek = [
     'понедельник',
     'вторник',
@@ -18,6 +21,18 @@
     'суббота',
     'воскресенье'
   ]
+  let calcLessons = lessons => {
+    const now = new Date()
+    let start = new Date()
+    let end = new Date()
+    return lessons.map(el => {
+      start.setHours(+el.time.begin.slice(0, -3), +el.time.begin.slice(3))
+      end.setHours(+el.time.end.slice(0, -3), +el.time.end.slice(3))
+      const current = now >= start && now <= end
+      if (!current) { return {...el, current} }
+      return {...el, current, passed: ((now - start) / (end - start)) * 100}
+    })
+  }
   export default {
     name: 'day',
     components: {
@@ -32,12 +47,28 @@
       return {
         dayOfTheWeek: dayWeek[this.dayWeek],
         dayOfTheMonth: this.dayMonth,
-        hover: false
+        hover: false,
+        interval: 0
+      }
+    },
+    computed: {
+      computedLessons () {
+        return calcLessons(this.lessons)
+      }
+    },
+    methods: {
+      updateTime () {
+        this.computedLessons = calcLessons(this.lessons)
       }
     },
     created () {
       const currentDay = new Date().getDay() - 1
       this.isCurrentDay = currentDay === this.dayWeek
+      if (this.isCurrentDay) {
+        this.interval = setInterval(function () {
+          this.updateTime()
+        }.bind(this), updateDelay)
+      }
     },
     mounted () {
       if (this.isCurrentDay) {
@@ -49,6 +80,9 @@
         }
         $el.scrollIntoView(true)
       }
+    },
+    beforeDestroy () {
+      clearInterval(this.interval)
     }
   }
 </script>

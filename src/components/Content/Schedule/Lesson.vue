@@ -5,7 +5,7 @@
       transition(name="time-end")
         span(v-if="hover").end {{time.end}}
     .description
-      separator(:type="type.number")
+      separator(v-if="current", :type="type.number", :style="{'top': passed + '%'}")
       p.title {{title}}
       p.type {{type.name}}
     p.room
@@ -25,10 +25,12 @@
 
   export default {
     name: 'lesson',
-    props: [
-      'lesson',
-      'today'
-    ],
+    props: {
+      lesson: {
+        type: Object,
+        required: true
+      }
+    },
     components: {
       separator
     },
@@ -128,10 +130,11 @@
         font-family "Source Sans Pro", sans-serif
       .separator
         position absolute
+        // TODO: fix bug with border when separator on top of next lesson
         top 0
         left calc(-0.5rem - 1px)
         transition-property top
-        transition-duration 0.5s
+        transition-duration 0.1s
 
     colors = firstTypeLessonColor secondTypeLessonColor thirdTypeLessonColor
     for num, i in first second third
@@ -162,8 +165,6 @@
       .description
         .type
           opacity 1
-        .separator
-          top 1rem
       .room
         .class-description
           opacity 1

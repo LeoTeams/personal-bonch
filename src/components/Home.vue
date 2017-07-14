@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <main>
     <side-bar />
     <div class="content">
       <header-bar />
@@ -7,7 +7,7 @@
         <router-view></router-view>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -31,7 +31,7 @@
 <style lang="stylus">
   @import "./styles/config.styl"
 
-  .main
+  main
     width 100%
     height 100%
     display flex

@@ -85,7 +85,7 @@
   // TODO: more beutiful hover effect for room (aka: https://vuejs.org/v2/guide/transitions.html#List-Move-Transitions)
   transition-opacity()
     transition-property opacity
-    transition-duration 0.5s
+    transition-duration 0.3s
   .lesson
     display flex
     width 100%
@@ -126,7 +126,7 @@
         font-weight 400
         opacity 0.8
         transition-property opacity
-        transition-duration 0.5s
+        transition-duration 0.3s
         font-family "Source Sans Pro", sans-serif
       .separator
         position absolute
@@ -178,9 +178,9 @@
     transform translateY(-0.5rem)
   .time-end-enter-to, .time-end-leave
     opacity 1
-    transform translateX(0)
+    transform translateY(0)
   .time-end-enter-active, .time-end-leave-active
     transition-property opacity transform
-    transition-duration 0.5s
+    transition-duration 0.3s
 
 </style>

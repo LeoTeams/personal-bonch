@@ -53,40 +53,33 @@ export default {
 <style lang="stylus" scoped>
   @import "../styles/config.styl"
 
-  .side-bar {
-    width: 250px;
-    height: 100%;
+  .side-bar
+    width 250px
+    height 100%
+    background-color #fff
+    z-index 1
+    box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
-    background-color: #fff;
+  .side-bar.fixed
+    position fixed
 
-    z-index: 1;
+  .side-bar .header
+    height 60px
+    display flex
+    align-items center
 
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
-  }
+  .to-the-end
+    margin-left auto
+    margin-right 20px
 
-  .side-bar.fixed {
-    position: fixed;
-  }
+  .slide-fade-enter-active
+    transition all .2s ease
 
-  .side-bar .header {
-    height: 60px;
-    display: flex;
-    align-items: center;
-  }
+  .slide-fade-leave-active
+    transition all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0)
 
-  .to-the-end {
-    margin-left: auto;
-    margin-right: 20px;
-  }
+  .slide-fade-enter, .slide-fade-leave-to
+    transform translateX(-10px)
+    opacity: 0
 
-  .slide-fade-enter-active {
-    transition: all .2s ease;
-  }
-  .slide-fade-leave-active {
-    transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
 </style>

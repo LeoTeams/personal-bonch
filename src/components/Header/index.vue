@@ -48,31 +48,25 @@ export default {
 <style lang="stylus" scoped>
   @import "../styles/config.styl"
 
-  .header-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    width: 100%;
-    min-height: 60px;
-
+  .header-bar
+    display flex
+    flex-direction row
+    align-items center
+    width 100%
+    min-height 60px
     background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
+    box-shadow 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
     z-index 100
-  }
 
-  .left {
-    margin-left: 20px;
-  }
+  .left
+    margin-left 20px
 
-  .right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+  .right
+    display flex
+    align-items center
+    margin-left auto
 
-  .right > div {
-    margin: 0 10px;
-  }
+  .right > div
+    margin 0 10px
+
 </style>

@@ -5,6 +5,7 @@
         <icon @click="close" name="close" :width="closeIconSize" :height="closeIconSize" class="to-the-end" />
       </div>
       <profile-preview v-if="!isWideScreen" :horizontal="false" />
+      <side-menu></side-menu>
     </div>
   </transition>
 </template>
@@ -15,11 +16,14 @@ import Icon from '@/components/UI/Icon'
 
 import ProfilePreview from '../Header/ProfilePreview'
 
+import Menu from './Menu'
+
 export default {
   name: 'side-bar',
   components: {
     'icon': Icon,
-    'profile-preview': ProfilePreview
+    'profile-preview': ProfilePreview,
+    'side-menu': Menu
   },
   data () {
     return {
@@ -57,7 +61,7 @@ export default {
     width 250px
     height 100%
     background-color #fff
-    z-index 1
+    z-index 200
     box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
   .side-bar.fixed
